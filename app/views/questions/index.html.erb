@@ -1,0 +1,19 @@
+<h1>Questions</h1>
+<table>
+  <tr>
+    <td>Title</td>
+    <td>Question</td>
+  </tr>
+  <tr>
+    <% @questions.each do |question|  %>
+      <td><%= question.title  %></td>
+      <td><%= question.content  %></td>
+  </tr>
+    <% end %>
+</table>
+  
+
+
+
+
+    
