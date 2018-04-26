@@ -1,0 +1,7 @@
+<h1><%= form_title  %></h1>
+
+<%= form_for @question do |f|  %>
+  <%= f.text_field :title, placeholder: "Title question"  %>
+  <%= f.text_area :content, placeholder: "Your  question"  %>
+  <%= f.submit "Create question"  %>  
+<% end %>
