@@ -33,7 +33,11 @@ class QuestionsController < ApplicationController
     end
   end
 
-
+  def destroy
+    question = Question.find(params[:id])
+    question.destroy 
+    redirect_to questions_path, notice: "Question has been Deleted"  
+  end
 
 
   private
