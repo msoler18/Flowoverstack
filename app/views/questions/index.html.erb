@@ -6,7 +6,7 @@
   </tr>
   <tr>
     <% @questions.each do |question|  %>
-      <td><%= question.title  %></td>
+      <td><%= link_to question.title, question  %></td>
       <td><%= question.content  %></td>
   </tr>
     <% end %>
