@@ -1,6 +1,8 @@
 <h1><%= @question.title  %></h1>
 <p><%= @question.content  %></p>
-<%= link_to "Add Answer", new_question_answer_path(@question)  %>
+<% if signed_in? %>
+  <%= link_to "Add Answer", new_question_answer_path(@question)  %>
+<% end %>
 
 <h3>Answers For question</h3>
 <table>
@@ -12,12 +14,16 @@
   <% @question.answers.each do |answer| %>
   <tr>
     <td><%= link_to answer.content, question_answer_path(@question,answer)  %></td>
-    <td><%= link_to "Edit answer", edit_question_answer_path(@question,answer)  %></td>
-    <td><%= link_to "Delete answer", [@question,answer], method: :delete, data: {confirm: "Are you sure to delete question?"}  %></td>
+    <% if signed_in? %>
+      <td><%= link_to "Edit answer", edit_question_answer_path(@question,answer)  %></td>
+      <td><%= link_to "Delete answer", [@question,answer], method: :delete, data: {confirm: "Are you sure to delete question?"}  %></td>
+    <% end %>
   </tr>
   <% end %>   
 </table>
 
 <h2>Comments</h2>
 <%= render 'comments/comments'  %>
-<%= render 'comments/form'  %>
+<% if signed_in? %>
+  <%= render 'comments/form'  %>
+<% end %>
