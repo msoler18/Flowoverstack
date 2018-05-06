@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  #Routes for auth Users
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
+
   resources :users
   root "questions#index"
 
@@ -12,4 +17,5 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:new,:create]
+
 end
