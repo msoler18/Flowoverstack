@@ -1,3 +1,8 @@
-<% [@question, @answer].each do |answer|  %>
+<% @question.answers.each do |answer|  %>
   <li><%= answer.content  %></li>
 <% end %>
+
+
+<h3>Comments</h3>
+<%= render 'comments/comments'  %>
+<%= render 'comments/form'  %>

@@ -12,13 +12,16 @@ class AnswersController < ApplicationController
   def show
     @question = Question.find(params[:question_id])
     @answer = Answer.find(params[:id])
+    @commentable = @answer
+    @comments = @commentable.comments
+    @comment = Comment.new
   end
   
   def create
     @question = Question.find(params[:question_id])
     @answer = @question.answers.create(answer_params)
     if @answer.save
-      redirect_to questions_path
+      redirect_to @question
     else
       render :new  
     end
@@ -41,9 +44,10 @@ class AnswersController < ApplicationController
   end
 
   def destroy
+    @question = Question.find(params[:question_id])
     answer = Answer.find(params[:id])
     answer.destroy
-    redirect_to questions_path, notice: "Answer has been delete"
+    redirect_to @question, notice: "Answer has been delete"
   end
 
   private
