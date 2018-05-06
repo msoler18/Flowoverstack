@@ -1,0 +1,5 @@
+<h2>Create answer</h2>
+<%= form_for [@question, @answer] do |f| %>
+  <%= f.text_field :content, placeholder: "Enter your answer"  %>
+  <%= f.submit "Create answer"  %>
+<% end %> 
