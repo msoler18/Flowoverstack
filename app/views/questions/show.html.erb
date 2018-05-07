@@ -1,29 +1,57 @@
-<h1><%= @question.title  %></h1>
-<p><%= @question.content  %></p>
-<% if signed_in? %>
-  <%= link_to "Add Answer", new_question_answer_path(@question)  %>
-<% end %>
+<div class="question-page">
+  <header class="question-header">
+    <h1><%= @question.title %></h1>
+    <%= link_to "Add Answer", new_question_answer_path(@question), class: "btn btn-success btn-lg"   %>
+  </header>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1">
+        <p><strong>Created: </strong><%= @question.created_at.strftime("%B %d, %Y")  %></p>
+        <p><%= @question.content %></p>
+      </div>
+    </div>
+  </div>
+  <div class="answer-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+          <div class="separator"></div>
+            <h3 class="subsec-title"><%= @question.answers.count %> Answers</h3>
+            <% @question.answers.each do |answer| %>
+              <p><strong>Created: </strong><%= answer.created_at.strftime("%B %d, %Y")  %></p>
+              <span class="answer-content"><%= link_to answer.content, question_answer_path(@question,answer)  %></span>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<h3>Answers For question</h3>
-<table>
-  <tr>
-    <th>Content</th>
-    <th></th>
-    <th></th> 
-  </tr>
-  <% @question.answers.each do |answer| %>
-  <tr>
-    <td><%= link_to answer.content, question_answer_path(@question,answer)  %></td>
-    <% if signed_in? %>
-      <td><%= link_to "Edit answer", edit_question_answer_path(@question,answer)  %></td>
-      <td><%= link_to "Delete answer", [@question,answer], method: :delete, data: {confirm: "Are you sure to delete question?"}  %></td>
-    <% end %>
-  </tr>
-  <% end %>   
-</table>
+<div class="comments-section">
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+    <div class="separator"></div>
+      <h3 class="subsec-title">Comments</h2>
+      <%= render 'comments/comments'  %>
+      <% if signed_in? %>
+        <%= render 'comments/form'  %>
+      <% end %>
+    </div>
+  </div>
+</div>  
+</div>
 
-<h2>Comments</h2>
-<%= render 'comments/comments'  %>
-<% if signed_in? %>
-  <%= render 'comments/form'  %>
-<% end %>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1">
+        <div class="votes">
+          <h2>Votos</h2>
+        </div>
+
+        <div class="comments">
+          <h2>Comentarios</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

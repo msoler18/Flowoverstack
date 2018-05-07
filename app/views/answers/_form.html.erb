@@ -1,5 +1,15 @@
-<h2>Create answer</h2>
-<%= form_for [@question, @answer] do |f| %>
-  <%= f.text_field :content, placeholder: "Enter your answer"  %>
-  <%= f.submit "Create answer"  %>
-<% end %> 
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <h1><%= form_title_answer  %></h1>
+      <%= form_for [@question, @answer] do |f| %>
+        <div class="form-group">
+          <%= f.text_field :content, class: "form-control input-lg", placeholder: "Your Answer" %>
+        </div>
+        <div>
+          <%= f.submit "Create Answer", class: "btn btn-success btn-lg btn-block" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
