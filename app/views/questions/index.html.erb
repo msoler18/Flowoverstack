@@ -6,7 +6,7 @@
         <div class="question clearfix">
           <div class="question-details">
             <span class="question-title"><%= link_to question.title, question %></span>
-            <span class="question-content"><%= question.content %></span>
+            <span class="question-content"><%= question.content.first(250) %></span>
             <span class="question-date"><%= question.created_at.strftime("%B %d, %Y") %></span>
           </div>
         </div>
