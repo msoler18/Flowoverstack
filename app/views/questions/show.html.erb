@@ -2,6 +2,12 @@
   <header class="question-header">
     <h1><%= @question.title %></h1>
     <%= link_to "Add Answer", new_question_answer_path(@question), class: "btn btn-success btn-lg"   %>
+    <% if signed_in? && @question.user == current_user %>
+    <div class="actions">
+      <%= link_to "<span class='glyphicon glyphicon-pencil'></span>".html_safe, edit_question_path(@question) %>
+      <%= link_to "<span class='glyphicon glyphicon-trash'></span>".html_safe, @question, method: :delete, data: { confirm: "Are you sure to delete this question?" } %>
+    </div>
+    <% end %>
   </header>
   <div class="container">
     <div class="row">
@@ -19,7 +25,7 @@
             <h3 class="subsec-title"><%= @question.answers.count %> Answers</h3>
             <% @question.answers.each do |answer| %>
               <p><strong>Created: </strong><%= answer.created_at.strftime("%B %d, %Y")  %></p>
-              <span class="answer-content"><%= link_to answer.content, question_answer_path(@question,answer)  %></span>
+              <span><%= link_to answer.content, question_answer_path(@question,answer)  %></span>
             <% end %>
         </div>
       </div>
@@ -55,3 +61,4 @@
     </div>
   </div>
 </div>
+

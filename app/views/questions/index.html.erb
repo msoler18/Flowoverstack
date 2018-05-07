@@ -30,31 +30,7 @@
 
 
 
-<h1>Questions</h1>
-<table>
-  <tr>
-    <td>Title</td>
-    <td>Question</td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <% @questions.each do |question|  %>
-      <td><%= link_to question.title, question  %></td>
-      <td><%= question.content  %></td>
-      <% if signed_in? %>
-        <td><%= link_to "Edit Question", edit_question_path(question)  %></td>
-        <td><%= link_to "Delete Question", question, method: :delete, data: {confirm: "Are you sure to delete this question?"}%></td>
-      <% end %>
-  </tr>
-    <% end %>
-</table>
 
-<% if signed_in? %>
-  <div class="text-right">
-    <%= link_to "Create question", new_question_path %>
-  </div>
-<% end %>  
 
 
 
