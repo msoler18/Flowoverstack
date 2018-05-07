@@ -1,4 +1,6 @@
 <%= form_for [@commentable, @comment] do |f| %>
-  <%= f.text_area :content, placeholder: "Enter your comment" %>
-  <%= f.submit "Comment"  %>
+  <div class="form-group">
+    <%= f.text_area :content, placeholder: "Enter your comment", class: "form-control input-lg" %>
+  </div>
+  <%= f.submit "Comment", class: "btn btn-success btn-lg btn-block"  %>
 <% end %>

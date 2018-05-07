@@ -1,6 +1,14 @@
 <div class="question-page">
   <header class="question-header">
     <h1><%= @question.title %></h1>
+        <% @question.answers.each do |answer| %>
+          <% if signed_in? && answer.user == current_user %>
+            <div class="actions">
+              <%= link_to "<span class='glyphicon glyphicon-pencil'></span>".html_safe, edit_question_answer_path(@question,answer) %>
+              <%= link_to "<span class='glyphicon glyphicon-trash'></span>".html_safe, [@question,@answer], method: :delete, data: { confirm: "Are you sure to delete this Answer" } %>
+            </div>
+          <% end %>
+        <% end %>
   </header>
   <div class="container">
     <div class="row">
